@@ -14,6 +14,9 @@ const DevSchema = new Schema({
         type: String,
         required: true
     },
+    followers: String,
+    following: String,
+    publicRepos: String,
     likes: [{
         type: Schema.Types.ObjectId,
         ref: 'Dev'
