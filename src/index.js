@@ -1,10 +1,9 @@
 const express = require('express');
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const routes = require('./routes');
-
-const server = express();
+const app = express();
 
 /**
  * Database setup
@@ -16,8 +15,10 @@ mongoose.connect(
   }
 );
 
-server.use(cors());
-server.use(express.json());
-server.use(routes);
+app.use(cors());
+app.use(express.json());
+app.use(morgan('dev'));
 
-server.listen(process.env.PORT || 3333);
+app.use(require('./routes'));
+
+app.listen(process.env.PORT || 3333);
